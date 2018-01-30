@@ -13,11 +13,10 @@ set -e
 root_dir="${HOME}/.bitcore"
 platform=`uname -a | awk '{print tolower($1)}'`
 arch=`uname -m`
-version="0.8.7.7"
+version="0.13.4.3"
 url="https://github.com/zcoinofficial/zcoin/releases"
-# tag="v0.12.1-bitcore-4"
 
-3.23 MBzcoin-qt-v0.8.7.7-linux64.tar.gz
+3.23 MBzcoin-qt-v0.13.4.3-linux64.tar.gz
 
 if [ "${platform}" == "linux" ]; then
     if [ "${arch}" == "x86_64" ]; then

@@ -94,8 +94,8 @@ describe('#add', function() {
       var callCount = 0;
       var oldPackage = {
         dependencies: {
-          'bitcore-lib-zcoin': 'git://github.com/technoprenerd/bitcore-lib-zcoin.git',
-          'bitcore-node-zcoin': 'git://github.com/technoprenerd/bitcore-node-zcoin.git'
+          'bitcore-lib-zcoin': 'git://github.com/sn-ntu/bitcore-lib-zcoin.git',
+          'bitcore-node-zcoin': 'git://github.com/sn-ntu/bitcore-node-zcoin.git'
         }
       };
       var spawn = sinon.stub().returns({

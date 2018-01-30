@@ -1,79 +1,41 @@
 Bitcore Node Zcoin
 ============
 
-Work in progress.
-
-Todo:
-
-```bash
-Download pre compiled version of Zcoind, using /script/download and shasum verify
-
-Lib/cli/main.js - Zcoin command structure check
-lib/services/bitcoind.js - Zcoin RPC login check (90)
-test/data/default&bitcoin.conf - ZCoin RPC checks 
-config:
-/.bitcore/data/zcoind
-
-
-removed compiled download of zcoind package.json for the time being:
-    // "preinstall": "./scripts/download",
-    // "verify": "./scripts/download --skip-bitcoin-download --verify-bitcoin-download",
-
-change from npm repository to github url in packages, for the time being:
-    "bitcoind-rpc-zcoin": "git://github.com/technoprenerd/bitcore-rpc-zcoin.git",
-    "bitcore-lib-zcoin": "git://github.com/technoprenerd/bitcore-lib-zcoin.git",
-    "bitcore-p2p-zcoin": "git://github.com/technoprenerd/bitcore-p2p-zcoin.git",
-
-Same in lib/scaffold/create.js:
-and chnangs in default-config.js
-  Depencencies atm from github.
-
-    'bitcore-lib-zcoin': '^' + bitcore.version,
-    'bitcore-node-zcoin': version
-
-
-```
-
-
-A Bitcoin full node for building applications and services with Node.js. A node is extensible and can be configured to run additional services. At the minimum a node has an interface to [Bitcoin Core with additional indexing](https://github.com/bitpay/bitcoin/tree/0.12.1-bitcore) for more advanced address queries. Additional services can be enabled to make a node more useful such as exposing new APIs, running a block explorer and wallet service.
-
-## Install
-
-```bash
-npm install -g bitcore-node-zcoin
-bitcore-node-zcoin start
-```
-
-Note: For your convenience, we distribute bitcoind binaries for x86_64 Linux and x86_64 Mac OS X. Upon npm install, the binaries for your platform will be downloaded. For more detailed installation instructions, or if you want to compile the project yourself, then please see the Bitcore branch of [Bitcoin Core with additional indexing](https://github.com/bitpay/bitcoin/tree/0.12.1-bitcore).
+A Zcoin full node for building applications and services with Node.js. A node is extensible and can be configured to run additional services. At the minimum a node has an interface to [Zcoin Core v0.12.1.x](https://github.com/sn-ntu/zcoin/tree/v0.12.1.x) for more advanced address queries. Additional services can be enabled to make a node more useful such as exposing new APIs, running a block explorer and wallet service.
 
 ## Prerequisites
 
-- GNU/Linux x86_32/x86_64, or OSX 64bit *(for bitcoind distributed binaries)*
-- Node.js v0.10, v0.12 or v4
+- Zcoin Core (v0.13.4.x) with support for additional indexing *(see above)*
+- Node.js v0.10, v0.12, v4 or v5
 - ZeroMQ *(libzmq3-dev for Ubuntu/Debian or zeromq on OSX)*
-- ~200GB of disk storage
-- ~8GB of RAM
+- ~20GB of disk storage
+- ~1GB of RAM
 
 ## Configuration
 
 Bitcore includes a Command Line Interface (CLI) for managing, configuring and interfacing with your Bitcore Node.
 
 ```bash
-bitcore-node-zcoin create -d <bitcoin-data-dir> mynode
+bitcore-node-zcoin create -d <zcoin-data-dir> mynode
 cd mynode
 bitcore-node-zcoin install <service>
 bitcore-node-zcoin install https://github.com/yourname/helloworld
+bitcore-node-zcoin start
 ```
 
-This will create a directory with configuration files for your node and install the necessary dependencies. For more information about (and developing) services, please see the [Service Documentation](docs/services.md).
+This will create a directory with configuration files for your node and install the necessary dependencies.
+
+Please note that [Zcoin Core v0.13.4.x](https://github.com/zcoinofficial/zcoin/tree/v0.13.4.x) will be downloaded automatically. Once completed the zcoind binary should be placed into the &lt;zcoin-data-dir&gt; folder specified during node creation.
+
+For more information about (and developing) services, please see the [Service Documentation](docs/services.md).
 
 ## Add-on Services
 
 There are several add-on services available to extend the functionality of Bitcore:
 
-- [Insight API](https://github.com/bitpay/insight-api)
-- [Insight UI](https://github.com/bitpay/insight-ui)
-- [Bitcore Wallet Service](https://github.com/bitpay/bitcore-wallet-service)
+- [Insight API](https://github.com/sn-ntu/insight-api-zcoin/tree/master)
+- [Insight UI](https://github.com/sn-ntu/insight-ui-zcoin/tree/master)
+- [Bitcore Wallet Service](https://github.com/sn-ntu/bitcore-wallet-service/tree/master)
 
 ## Documentation
 
@@ -96,4 +58,5 @@ Code released under [the MIT license](https://github.com/bitpay/bitcore-node-zco
 
 Copyright 2013-2015 BitPay, Inc.
 
-- bitcoin: Copyright (c) 2009-2015 Bitcoin Core Developers (MIT License)
+- bitcoin: Copyright (c) 2009-2018 Bitcoin Core Developers (MIT License)
+- zcoin: Copyright (c) 2016-2018 Zcoin Core Developers (MIT License)
