@@ -1,7 +1,7 @@
 Bitcore Node Zcoin
 ============
 
-A Zcoin full node for building applications and services with Node.js. A node is extensible and can be configured to run additional services. At the minimum a node has an interface to [Zcoin Core v0.12.1.x](https://github.com/sn-ntu/zcoin/tree/v0.12.1.x) for more advanced address queries. Additional services can be enabled to make a node more useful such as exposing new APIs, running a block explorer and wallet service.
+A Zcoin full node for building applications and services with Node.js. A node is extensible and can be configured to run additional services. At the minimum a node has an interface to [Zcoin Core v0.12.1.x](https://github.com/zcoinofficial/zcoin/tree/v0.12.1.x) for more advanced address queries. Additional services can be enabled to make a node more useful such as exposing new APIs, running a block explorer and wallet service.
 
 ## Prerequisites
 
@@ -33,9 +33,9 @@ For more information about (and developing) services, please see the [Service Do
 
 There are several add-on services available to extend the functionality of Bitcore:
 
-- [Insight API](https://github.com/sn-ntu/insight-api-zcoin/tree/master)
-- [Insight UI](https://github.com/sn-ntu/insight-ui-zcoin/tree/master)
-- [Bitcore Wallet Service](https://github.com/sn-ntu/bitcore-wallet-service/tree/master)
+- [Insight API](https://github.com/zcoinofficial/insight-api-zcoin/tree/master)
+- [Insight UI](https://github.com/zcoinofficial/insight-ui-zcoin/tree/master)
+- [Bitcore Wallet Service](https://github.com/zcoinofficial/bitcore-wallet-service/tree/master)
 
 ## Documentation
 

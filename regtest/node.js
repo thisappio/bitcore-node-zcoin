@@ -10,7 +10,7 @@ log.debug = function () {
 };
 
 var chai = require('chai');
-var bitcore = require('bitcore-lib-zcoin');
+var bitcore = require('zcore-lib');
 var rimraf = require('rimraf');
 var node;
 
