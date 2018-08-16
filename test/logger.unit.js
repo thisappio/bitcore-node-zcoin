@@ -41,10 +41,10 @@ describe('Logger', function() {
     console.error.callCount.should.equal(1);
     console.error.restore();
 
-    sandbox.stub(console, 'log');
+    sandbox.stub(console, 'debug');
     logger.debug('Test debug log');
-    console.log.callCount.should.equal(1);
-    console.log.restore();
+    console.debug.callCount.should.equal(1);
+    console.debug.restore();
 
     sandbox.stub(console, 'warn');
     logger.warn('Test warn log');
