@@ -6,15 +6,15 @@ var sinon = require('sinon');
 var proxyquire = require('proxyquire');
 
 describe('#defaultConfig', function() {
-  var expectedExecPath = path.resolve(__dirname, '../../bin/zcoind');
-  //var expectedExecPath = path.resolve(__dirname, './.bitcore/data/zcoind');
+  //var expectedExecPath = path.resolve(__dirname, '../../bin/zcoind');
+  var expectedExecPath = path.resolve(process.env.HOME, '.bitcore/data/zcoind');
   
   it('will return expected configuration', function() {
     var config = JSON.stringify({
       network: 'livenet',
-      port: 3001,
+      port: 8168,
       services: [
-        'bitcoind',
+        'zcoind',
         'web'
       ],
       servicesConfig: {
@@ -45,8 +45,8 @@ describe('#defaultConfig', function() {
     var info = defaultConfig();
     info.path.should.equal(home + '/.bitcore');
     info.config.network.should.equal('livenet');
-    info.config.port.should.equal(3001);
-    info.config.services.should.deep.equal(['bitcoind', 'web']);
+    info.config.port.should.equal(8168);
+    info.config.services.should.deep.equal(['zcoind', 'web']);
     var bitcoind = info.config.servicesConfig.bitcoind;
     should.exist(bitcoind);
     bitcoind.spawn.datadir.should.equal(home + '/.bitcore/data');
@@ -55,9 +55,9 @@ describe('#defaultConfig', function() {
   it('will include additional services', function() {
     var config = JSON.stringify({
       network: 'livenet',
-      port: 3001,
+      port: 8168,
       services: [
-        'bitcoind',
+        'zcoind',
         'web',
         'insight-api',
         'insight-ui'
@@ -92,9 +92,9 @@ describe('#defaultConfig', function() {
     });
     info.path.should.equal(home + '/.bitcore');
     info.config.network.should.equal('livenet');
-    info.config.port.should.equal(3001);
+    info.config.port.should.equal(8168);
     info.config.services.should.deep.equal([
-      'bitcoind',
+      'zcoind',
       'web',
       'insight-api',
       'insight-ui'

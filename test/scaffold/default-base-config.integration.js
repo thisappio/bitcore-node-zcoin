@@ -8,13 +8,14 @@ describe('#defaultBaseConfig', function() {
   it('will return expected configuration', function() {
     var cwd = process.cwd();
     var home = process.env.HOME;
-    var info = defaultBaseConfig();
+    var opts = {datadir:path.resolve(__dirname, '../../bin')};
+    var info = defaultBaseConfig(opts);
     info.path.should.equal(cwd);
     info.config.network.should.equal('livenet');
-    info.config.port.should.equal(3001);
-    info.config.services.should.deep.equal(['bitcoind', 'web']);
+    info.config.port.should.equal(18168);
+    info.config.services.should.deep.equal(['zcoind', 'web']);
     var bitcoind = info.config.servicesConfig.bitcoind;
-    bitcoind.spawn.datadir.should.equal(home + '/.zcoin');
+    bitcoind.spawn.datadir.should.equal(opts.datadir);
     bitcoind.spawn.exec.should.equal(path.resolve(__dirname, '../../bin/zcoind'));
     //bitcoind.spawn.exec.should.equal(path.resolve(__dirname, './.bitcore/data/zcoind'));
   });
