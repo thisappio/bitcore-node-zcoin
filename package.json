@@ -2,11 +2,11 @@
     "name": "bitcore-node-zcoin",
     "description": "Full node with extended capabilities using Bitcore and Zcoin Core",
     "author": "BitPay <dev@bitpay.com>",
-    "version": "3.1.3",
+    "version": "3.1.99",
     "main": "./index.js",
     "repository": {
         "type": "git",
-        "url": "git://github.com/zcoinofficial/bitcore-node-zcoin.git"
+        "url": "git@github.com:zcoinofficial/bitcore-node-zcoin.git#refactor-mtp"
     },
     "homepage": "https://github.com/zcoinofficial/bitcore-node-zcoin",
     "bugs": {
@@ -34,9 +34,9 @@
     ],
     "dependencies": {
         "async": "^1.3.0",
-        "bitcoind-rpc-zcoin": "git://github.com/zcoinofficial/bitcoind-rpc-zcoin.git",
-        "zcore-lib": "git://github.com/zcoinofficial/zcore-lib.git",
-        "bitcore-p2p-zcoin": "git://github.com/zcoinofficial/bitcore-p2p-zcoin.git",
+        "bitcoind-rpc-zcoin": "git@github.com:zcoinofficial/bitcoind-rpc-zcoin.git#refactor-mtp",
+        "zcore-lib": "git@github.com:zcoinofficial/zcore-lib.git#refactor-mtp",
+        "bitcore-p2p-zcoin": "git@github.com:zcoinofficial/bitcore-p2p-zcoin.git",
         "body-parser": "^1.13.3",
         "colors": "^1.1.2",
         "commander": "^2.8.1",

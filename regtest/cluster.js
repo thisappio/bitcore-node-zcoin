@@ -158,7 +158,7 @@ describe('Bitcoin Cluster', function () {
     });
 
     it('step 2: receive block events', function (done) {
-        this.timeout(10000);
+        this.timeout(100000);
         node.services.bitcoind.once('tip', function (height) {
             height.should.equal(1);
             done();
@@ -172,6 +172,7 @@ describe('Bitcoin Cluster', function () {
     });
 
     it('step 3: get blocks', function (done) {
+        this.timeout(100000);
         async.times(3, function (n, next) {
             node.getBlock(1, function (err, block) {
                 if (err) {

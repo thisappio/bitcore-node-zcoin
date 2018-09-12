@@ -29,7 +29,7 @@ var destKey = bitcore.PrivateKey();
 describe('Bitcoind Functionality', function () {
 
     before(function (done) {
-        this.timeout(60000);
+        this.timeout(6000000);
 
         // Add the regtest network
         bitcore.Networks.enableRegtest();
@@ -74,13 +74,13 @@ describe('Bitcoind Functionality', function () {
                     rejectUnauthorized: false
                 });
 
-                log.info('Generating 100 blocks...');
+                log.info('Generating 5 blocks...');
 
                 // Generate enough blocks so that the initial coinbase transactions
                 // can be spent.
 
                 setImmediate(function () {
-                    client.generate(150, function (err, response) {
+                    client.generate(5, function (err, response) {
                         if (err) {
                             throw err;
                         }
@@ -139,7 +139,7 @@ describe('Bitcoind Functionality', function () {
 
     describe('get blocks by hash', function () {
 
-        [0, 1, 2, 3, 5, 6, 7, 8, 9].forEach(function (i) {
+        [0, 1, 2, 3, 4].forEach(function (i) {
             it('generated block ' + i, function (done) {
                 bitcoind.getBlock(blockHashes[i], function (err, block) {
                     if (err) {
@@ -154,7 +154,7 @@ describe('Bitcoind Functionality', function () {
     });
 
     describe('get blocks as buffers', function () {
-        [0, 1, 2, 3, 5, 6, 7, 8, 9].forEach(function (i) {
+        [0, 1, 2, 3, 4].forEach(function (i) {
             it('generated block ' + i, function (done) {
                 bitcoind.getRawBlock(blockHashes[i], function (err, block) {
                     if (err) {
@@ -183,7 +183,7 @@ describe('Bitcoind Functionality', function () {
 
     describe('get blocks by height', function () {
 
-        [0, 1, 2, 3, 4, 5, 6, 7, 8, 9].forEach(function (i) {
+        [0, 1, 2, 3, 4].forEach(function (i) {
             it('generated block ' + i, function (done) {
                 // add the genesis block
                 var height = i + 1;
@@ -209,7 +209,7 @@ describe('Bitcoind Functionality', function () {
     });
 
     describe('get transactions by hash', function () {
-        [0, 1, 2, 3, 4, 5, 6, 7, 8, 9].forEach(function (i) {
+        [0, 1, 2, 3, 4].forEach(function (i) {
             it('for tx ' + i, function (done) {
                 var txhex = transactionData[i];
                 var tx = new bitcore.Transaction();
@@ -234,7 +234,7 @@ describe('Bitcoind Functionality', function () {
     });
 
     describe('get transactions as buffers', function () {
-        [0, 1, 2, 3, 4, 5, 6, 7, 8, 9].forEach(function (i) {
+        [0, 1, 2, 3, 4].forEach(function (i) {
             it('for tx ' + i, function (done) {
                 var txhex = transactionData[i];
                 var tx = new bitcore.Transaction();
@@ -261,7 +261,7 @@ describe('Bitcoind Functionality', function () {
 
     describe('get block header', function () {
         var expectedWork = new BN(6);
-        [1, 2, 3, 4, 5, 6, 7, 8, 9].forEach(function (i) {
+        [1, 2, 3, 4].forEach(function (i) {
             it('generate block ' + i, function (done) {
                 bitcoind.getBlockHeader(blockHashes[i], function (err, blockIndex) {
                     if (err) {
@@ -300,7 +300,7 @@ describe('Bitcoind Functionality', function () {
 
     describe('get block index by height', function () {
         var expectedWork = new BN(6);
-        [2, 3, 4, 5, 6, 7, 8, 9].forEach(function (i) {
+        [2, 3, 4].forEach(function (i) {
             it('generate block ' + i, function () {
                 bitcoind.getBlockHeader(i, function (err, header) {
                     should.exist(header);

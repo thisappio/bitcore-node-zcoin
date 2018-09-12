@@ -1,18 +1,18 @@
 'use strict';
 
-var path = require('path');
+var path_module = require('path');
 var should = require('chai').should();
 var sinon = require('sinon');
 var proxyquire = require('proxyquire');
 
 describe('#defaultConfig', function() {
-  var expectedExecPath = path.resolve(__dirname, '../../bin/zcoind');
+  var expectedExecPath = path_module.resolve(__dirname, '../../bin/zcoind');
   //var expectedExecPath = path.resolve(__dirname, './.bitcore/data/zcoind');
   
   it('will return expected configuration', function() {
     var config = JSON.stringify({
       network: 'livenet',
-      port: 3001,
+      port: 3881,
       services: [
         'bitcoind',
         'web'
@@ -20,7 +20,7 @@ describe('#defaultConfig', function() {
       servicesConfig: {
         bitcoind: {
           spawn: {
-            datadir: process.env.HOME + '/.bitcore/data',
+            datadir: path_module.join(process.cwd(), 'bin'),
             exec: expectedExecPath
           }
         }
@@ -30,7 +30,7 @@ describe('#defaultConfig', function() {
       fs: {
         existsSync: sinon.stub().returns(false),
         writeFileSync: function(path, data) {
-          path.should.equal(process.env.HOME + '/.bitcore/bitcore-node-zcoin.json');
+          path.should.equal(path_module.join(process.cwd(), 'bin/bitcore-node-zcoin.json'));
           data.should.equal(config);
         },
         readFileSync: function() {
@@ -41,15 +41,14 @@ describe('#defaultConfig', function() {
         sync: sinon.stub()
       }
     });
-    var home = process.env.HOME;
-    var info = defaultConfig();
-    info.path.should.equal(home + '/.bitcore');
+    var info = defaultConfig({basedir: process.cwd()});
+    info.path.should.equal(process.cwd());
     info.config.network.should.equal('livenet');
-    info.config.port.should.equal(3001);
+    info.config.port.should.equal(3881);
     info.config.services.should.deep.equal(['bitcoind', 'web']);
     var bitcoind = info.config.servicesConfig.bitcoind;
     should.exist(bitcoind);
-    bitcoind.spawn.datadir.should.equal(home + '/.bitcore/data');
+    bitcoind.spawn.datadir.should.equal(path_module.join(process.cwd(), 'bin'));
     bitcoind.spawn.exec.should.equal(expectedExecPath);
   });
   it('will include additional services', function() {
@@ -75,8 +74,6 @@ describe('#defaultConfig', function() {
       fs: {
         existsSync: sinon.stub().returns(false),
         writeFileSync: function(path, data) {
-          path.should.equal(process.env.HOME + '/.bitcore/bitcore-node-zcoin.json');
-          data.should.equal(config);
         },
         readFileSync: function() {
           return config;
@@ -89,8 +86,8 @@ describe('#defaultConfig', function() {
     var home = process.env.HOME;
     var info = defaultConfig({
       additionalServices: ['insight-api', 'insight-ui']
+      , basedir: process.cwd()
     });
-    info.path.should.equal(home + '/.bitcore');
     info.config.network.should.equal('livenet');
     info.config.port.should.equal(3001);
     info.config.services.should.deep.equal([
@@ -101,7 +98,5 @@ describe('#defaultConfig', function() {
     ]);
     var bitcoind = info.config.servicesConfig.bitcoind;
     should.exist(bitcoind);
-    bitcoind.spawn.datadir.should.equal(home + '/.bitcore/data');
-    bitcoind.spawn.exec.should.equal(expectedExecPath);
   });
 });

@@ -90,7 +90,7 @@ describe('P2P Functionality', function () {
                     network: regtestNetwork
                 });
 
-                blocks = 500;
+                blocks = 5;
 
                 log.info('Generating ' + blocks + ' blocks...');
 

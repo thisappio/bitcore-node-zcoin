@@ -13,6 +13,7 @@ var chai = require('chai');
 var bitcore = require('zcore-lib');
 var rimraf = require('rimraf');
 var node;
+var AddrUtils = bitcore.util.AddrUtils;
 
 var should = chai.should();
 
@@ -21,7 +22,7 @@ var index = require('..');
 var Transaction = bitcore.Transaction;
 var BitcoreNode = index.Node;
 var BitcoinService = index.services.Bitcoin;
-var testWIF = 'cSdkPxkAjA4HDr5VHgsebAPDEh9Gyub4HK8UJr2DFGGqKKy4K5sG';
+var testWIF = AddrUtils.bitcoin_address_to_zcoin('cSdkPxkAjA4HDr5VHgsebAPDEh9Gyub4HK8UJr2DFGGqKKy4K5sG');
 var testKey;
 var client;
 
